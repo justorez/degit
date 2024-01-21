@@ -2,7 +2,7 @@
   "name": "degitc",
   "author": "justorez",
   "description": "🚀 degit-CN with github proxy",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "type": "module",
   "main": "src/index.js",
   "bin": {
@@ -11,10 +11,10 @@
   "engines": {
     "node": ">=16.0.0"
   },
-	"publishConfig": {
-		"access": "public",
-		"registry": "https://registry.npmjs.org/"
-	},
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "dev": "npm run build -- --watch",
     "test": "mocha",
@@ -34,24 +34,26 @@
     "url": "https://github.com/justorez/degitc/issues"
   },
   "homepage": "https://github.com/justorez/degitc#readme",
-  "devDependencies": {
+  "dependencies": {
     "chalk": "4.1.0",
     "enquirer": "2.3.6",
+    "fuzzysearch": "1.0.3",
+    "https-proxy-agent": "7.0.2",
+    "mri": "1.1.6",
+    "rimraf": "3.0.2",
+    "sander": "0.6.0",
+    "tar": "6.1.0",
+    "tiny-glob": "0.2.8"
+  },
+  "devDependencies": {
     "eslint": "7.23.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-import": "2.22.1",
-    "fuzzysearch": "1.0.3",
-    "https-proxy-agent": "7.0.2",
     "husky": "6.0.0",
     "lint-staged": "10.5.4",
     "mocha": "8.3.2",
-    "mri": "1.1.6",
     "prettier": "2.2.1",
-    "rimraf": "3.0.2",
-    "sander": "0.6.0",
-    "source-map-support": "0.5.21",
-    "tar": "6.1.0",
-    "tiny-glob": "0.2.8"
+    "source-map-support": "0.5.21"
   },
   "files": [
     "help.md",
