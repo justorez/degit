@@ -1,11 +1,11 @@
 # degitc — straightforward project scaffolding
 
-[![npm package version](https://badgen.net/npm/v/degitc)](https://npm.im/degitc)
+![npm package version](https://badgen.net/npm/v/degitc?t=123)
 [![Known Vulnerabilities](https://snyk.io/test/npm/degitc/badge.svg)](https://snyk.io/test/npm/degitc)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-> Base on [Rich-Harris/degit](https://github.com/Rich-Harris/degit) v2.8,4
+> Base on [Rich-Harris/degit](https://github.com/Rich-Harris/degit) v2.8.4
 > - fix: remove `.git` error on windows
 > - fix: `--help` no such file `help.md`
 > - feat: add `--proxy` cli option
