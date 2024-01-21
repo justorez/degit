@@ -1,20 +1,25 @@
-require('source-map-support').install();
+import * as sourceMapSupport from 'source-map-support'
+import { lstatSync, readFileSync } from 'fs';
+import path, { resolve } from 'path';
+import glob from 'tiny-glob/sync.js';
+import Rimraf from 'rimraf';
+import { deepEqual, equal, ok } from 'assert';
+import { exec as _exec } from 'child_process';
+import { fileURLToPath } from 'url';
+import degit from '../src/index.js';
 
-const fs = require('fs');
-const path = require('path');
-const glob = require('tiny-glob/sync');
-const rimraf = require('rimraf').sync;
-const assert = require('assert');
-const child_process = require('child_process');
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const degit = require('../dist/index.js');
-const degitPath = path.resolve('dist/bin.js');
+sourceMapSupport.install();
+
+const rimraf = Rimraf.sync;
+const degitPath = resolve(__dirname, '../src/bin.js');
 
 const timeout = 30000;
 
 function exec(cmd) {
 	return new Promise((fulfil, reject) => {
-		child_process.exec(cmd, (err, stdout, stderr) => {
+		_exec(cmd, (err, stdout, stderr) => {
 			if (err) return reject(err);
 			console.log(stdout);
 			console.error(stderr);
@@ -23,16 +28,16 @@ function exec(cmd) {
 	});
 }
 
-describe('degit', function() {
+describe('degit', function () {
 	this.timeout(timeout);
 
 	function compare(dir, files) {
 		const expected = glob('**', { cwd: dir });
-		assert.deepEqual(Object.keys(files).sort(), expected.sort());
+		deepEqual(Object.keys(files).sort(), expected.sort());
 
 		expected.forEach(file => {
-			if (!fs.lstatSync(`${dir}/${file}`).isDirectory()) {
-				assert.equal(files[file].trim(), read(`${dir}/${file}`).trim());
+			if (!lstatSync(`${dir}/${file}`).isDirectory()) {
+				equal(files[file].trim(), read(`${dir}/${file}`).trim());
 			}
 		});
 	}
@@ -132,10 +137,10 @@ describe('degit', function() {
 				);
 				succeeded = true;
 			} catch (err) {
-				assert.ok(/destination directory is not empty/.test(err.message));
+				ok(/destination directory is not empty/.test(err.message));
 			}
 
-			assert.ok(!succeeded);
+			ok(!succeeded);
 		});
 
 		it('succeeds with --force', async () => {
@@ -223,5 +228,5 @@ describe('degit', function() {
 });
 
 function read(file) {
-	return fs.readFileSync(file, 'utf-8');
+	return readFileSync(file, 'utf-8');
 }

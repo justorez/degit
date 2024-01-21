@@ -1,21 +1,26 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import chalk from 'chalk';
 import mri from 'mri';
 import glob from 'tiny-glob/sync.js';
 import fuzzysearch from 'fuzzysearch';
 import enquirer from 'enquirer';
 import degit from './index.js';
-import { tryRequire, base } from './utils.js';
+import { readJson, base } from './utils.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const args = mri(process.argv.slice(2), {
 	alias: {
+		h: 'help',
 		f: 'force',
 		c: 'cache',
 		v: 'verbose',
-		m: 'mode'
+		m: 'mode',
+		p: 'proxy'
 	},
-	boolean: ['force', 'cache', 'verbose']
+	boolean: ['help', 'force', 'cache', 'verbose']
 });
 
 const [src, dest = '.'] = args._;
@@ -23,7 +28,7 @@ const [src, dest = '.'] = args._;
 async function main() {
 	if (args.help) {
 		const help = fs
-			.readFileSync(path.join(__dirname, 'help.md'), 'utf-8')
+			.readFileSync(path.join(__dirname, '../help.md'), 'utf-8')
 			.replace(/^(\s*)#+ (.+)/gm, (m, s, _) => s + chalk.bold(_))
 			.replace(/_([^_]+)_/g, (m, _) => chalk.underline(_))
 			.replace(/`([^`]+)`/g, (m, _) => chalk.cyan(_));
@@ -48,8 +53,9 @@ async function main() {
 
 		const getChoice = file => {
 			const [host, user, repo] = file.split(path.sep);
+			console.log(`${base}/${file}`)
 
-			return Object.entries(tryRequire(`${base}/${file}`)).map(
+			return Object.entries(readJson(`${base}/${file}`)).map(
 				([ref, hash]) => ({
 					name: hash,
 					message: `${host}:${user}/${repo}#${ref}`,
@@ -106,7 +112,7 @@ async function main() {
 			]);
 
 			if (!force) {
-				console.error(chalk.magenta(`! Directory not empty — aborting`));
+				console.error(chalk.yellow(`⚠️ Directory isn't empty — aborting`));
 				return;
 			}
 		}
@@ -124,17 +130,17 @@ function run(src, dest, args) {
 	const d = degit(src, args);
 
 	d.on('info', event => {
-		console.error(chalk.cyan(`> ${event.message.replace('options.', '--')}`));
+		console.log(chalk.cyan(`ℹ️ ${event.message.replace('options.', '--')}`));
 	});
 
 	d.on('warn', event => {
 		console.error(
-			chalk.magenta(`! ${event.message.replace('options.', '--')}`)
+			chalk.yellow(`⚠️ ${event.message.replace('options.', '--')}`)
 		);
 	});
 
 	d.clone(dest).catch(err => {
-		console.error(chalk.red(`! ${err.message.replace('options.', '--')}`));
+		console.error(chalk.red(`❌ ${err.message.replace('options.', '--')}`));
 		process.exit(1);
 	});
 }

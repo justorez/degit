@@ -1,8 +1,8 @@
-# _degit_
+# _degitc_
 
 Usage:
 
-`degit <src>[#ref] [<dest>] [options]`
+`degitc <src>[#ref] [<dest>] [options]`
 
 Fetches the `src` repo, and extracts it to `dest` (or the current directory).
 
@@ -53,7 +53,8 @@ Options:
   `--cache`,   `-c`  Only use local cache
   `--force`,   `-f`  Allow non-empty destination directory
   `--verbose`, `-v`  Extra logging
-  `--mode=`,   `-m=` Force the mode by which degit clones the repo
-                     Valid options are `tar` or `git` (uses SSH)
+  `--mode`,    `-m`  Force the mode by which degit clones the repo (`tar` or `git`)
+  `--proxy`,   `-p`  Use proxy to request resource (or via `https_proxy` environment variable)
+  `--no-ghp`,        Disable github proxy (https://mirror.ghproxy.com/)
 
-See https://github.com/Rich-Harris/degit for more information
+See https://github.com/justorez/degitc for more information
