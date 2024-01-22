@@ -76,8 +76,7 @@ class Degit extends EventEmitter {
 
   _getDirectives(dest) {
     const directivesPath = path.resolve(dest, degitConfigName);
-    const directives =
-      readJson(directivesPath, { clearCache: true }) || false;
+    const directives = readJson(directivesPath, { clearCache: true }) || false;
     if (directives) {
       fs.unlinkSync(directivesPath);
     }
@@ -295,7 +294,7 @@ class Degit extends EventEmitter {
         }
       }
     } catch (err) {
-      console.error(err)
+      console.error(err);
       throw new DegitError(`Couldn't download ${url}`, {
         code: 'COULD_NOT_DOWNLOAD',
         url,
@@ -318,7 +317,7 @@ class Degit extends EventEmitter {
 
   async _cloneWithGit(_, dest) {
     await exec(`git clone ${this.repo.ssh} ${dest}`);
-    await rimraf(path.resolve(dest, '.git'))
+    await rimraf(path.resolve(dest, '.git'));
   }
 }
 
@@ -357,7 +356,7 @@ function parse(src, opts) {
   }`;
   let url = `https://${domain}/${user}/${name}`;
   if (site === 'github' && opts.ghp !== false) {
-    url = `https://mirror.ghproxy.com/${url}`
+    url = `https://mirror.ghproxy.com/${url}`;
   }
 
   const ssh = `git@${domain}:${user}/${name}`;

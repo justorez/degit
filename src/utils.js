@@ -25,7 +25,7 @@ export function readJson(file, opts) {
       // delete require.cache[require.resolve(file)];
     }
     // return require(file);
-		return JSON.parse(fs.readFileSync(file, 'utf8'));
+    return JSON.parse(fs.readFileSync(file, 'utf8'));
   } catch (err) {
     return null;
   }
@@ -62,10 +62,10 @@ export function fetch(url, dest, proxy) {
     let options = {};
 
     if (proxy) {
-      proxy = proxy.includes('://') ? proxy : `http://${proxy}`
+      proxy = proxy.includes('://') ? proxy : `http://${proxy}`;
       options = {
         agent: new HttpsProxyAgent(proxy)
-      }
+      };
     }
 
     https
@@ -78,7 +78,7 @@ export function fetch(url, dest, proxy) {
         } else {
           response
             .pipe(fs.createWriteStream(dest))
-            .on('finish', () => resolve())
+            .on('finish', resolve)
             .on('error', reject);
         }
       })

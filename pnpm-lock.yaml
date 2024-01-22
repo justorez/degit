@@ -20,9 +20,6 @@ dependencies:
   mri:
     specifier: 1.1.6
     version: 1.1.6
-  rimraf:
-    specifier: 3.0.2
-    version: 3.0.2
   sander:
     specifier: 0.6.0
     version: 0.6.0
@@ -44,8 +41,8 @@ devDependencies:
     specifier: 2.22.1
     version: 2.22.1(eslint@7.23.0)
   husky:
-    specifier: 6.0.0
-    version: 6.0.0
+    specifier: 8.0.3
+    version: 8.0.3
   lint-staged:
     specifier: 10.5.4
     version: 10.5.4
@@ -55,6 +52,9 @@ devDependencies:
   prettier:
     specifier: 2.2.1
     version: 2.2.1
+  rimraf:
+    specifier: 3.0.2
+    version: 3.0.2
   source-map-support:
     specifier: 0.5.21
     version: 0.5.21
@@ -1135,8 +1135,9 @@ packages:
     engines: {node: '>=8.12.0'}
     dev: true
 
-  /husky@6.0.0:
-    resolution: {integrity: sha512-SQS2gDTB7tBN486QSoKPKQItZw97BMOd+Kdb6ghfpBc0yXyzrddI0oDV5MkDAbuB4X2mO3/nj60TRMcYxwzZeQ==}
+  /husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
@@ -1946,6 +1947,7 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
 
   /rxjs@7.8.1:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
