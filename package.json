@@ -1,8 +1,8 @@
 {
   "name": "degitc",
   "author": "justorez",
-  "description": "🚀 degit-CN with github proxy",
-  "version": "1.0.2",
+  "description": "🚀 degit with github proxy",
+  "version": "1.0.3",
   "packageManager": "pnpm@8.14.3",
   "type": "module",
   "main": "src/index.js",
@@ -55,8 +55,7 @@
     "husky": "8.0.3",
     "mocha": "8.3.2",
     "prettier": "2.2.1",
-    "rimraf": "3.0.2",
-    "source-map-support": "0.5.21"
+    "rimraf": "3.0.2"
   },
   "files": [
     "help.md",

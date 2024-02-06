@@ -143,4 +143,9 @@ function run(src, dest, args) {
   });
 }
 
+process.on('uncaughtException', error => {
+  console.log();
+  console.log(error.message);
+});
+
 main();

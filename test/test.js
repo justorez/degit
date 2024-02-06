@@ -1,4 +1,3 @@
-import * as sourceMapSupport from 'source-map-support';
 import { lstatSync, readFileSync } from 'fs';
 import path, { resolve } from 'path';
 import glob from 'tiny-glob/sync.js';
@@ -9,8 +8,6 @@ import { fileURLToPath } from 'url';
 import degit from '../src/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-sourceMapSupport.install();
 
 const rimraf = Rimraf.sync;
 const degitPath = resolve(__dirname, '../src/bin.js');

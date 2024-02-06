@@ -1,6 +1,7 @@
 # degitc — straightforward project scaffolding
 
 ![npm package version](https://badgen.net/npm/v/degitc?t=123)
+[![publish](https://github.com/justorez/degitc/actions/workflows/publish.yml/badge.svg)](https://github.com/justorez/degitc/actions/workflows/publish.yml)
 [![Known Vulnerabilities](https://snyk.io/test/npm/degitc/badge.svg)](https://snyk.io/test/npm/degitc)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
